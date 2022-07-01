@@ -1,0 +1,133 @@
+<h1>mon profile</h1>
+
+
+<mat-stepper #stepper>
+
+    <mat-step [stepControl]="firstFormGroup">
+      <form [formGroup]="firstFormGroup">
+
+        <ng-template matStepLabel>Formation</ng-template>
+        
+<mat-grid-list cols="2" rowHeight="8:1">
+  <mat-grid-tile><section class="example-section">
+    <h2>Niveau d'etude</h2>
+    <mat-checkbox class="example-margin">cm2</mat-checkbox>&nbsp; &nbsp; &nbsp; &nbsp;
+    <mat-checkbox class="example-margin">3eme</mat-checkbox>&nbsp; &nbsp;&nbsp; &nbsp;
+    <mat-checkbox class="example-margin">seconde</mat-checkbox>&nbsp; &nbsp;&nbsp; &nbsp;
+    <mat-checkbox class="example-margin">bac</mat-checkbox>&nbsp; &nbsp;&nbsp; &nbsp;
+    <mat-checkbox class="example-margin">apres bac</mat-checkbox>
+
+    
+  </section></mat-grid-tile>
+  
+</mat-grid-list>
+        <div class="row">
+        <div class="col">
+          <mat-form-field appearance="fill"  class="full-width">
+            <mat-label>Date de debut </mat-label>
+            <input matInput formControlName="secondCtrl" placeholder="Ex. 31/12/2022"
+                   required>
+          </mat-form-field> </div>
+       
+          <div class="col">
+            <mat-form-field appearance="fill"  class="full-width">
+              <mat-label>Date de fin </mat-label>
+              <input matInput formControlName="secondCtrl" placeholder="Ex. 31/12/2022"
+                     required>
+            </mat-form-field> </div>
+
+                
+                 <div class="col"><mat-checkbox class="example-margin" class="full-width">à aujourd'hui</mat-checkbox></div>
+
+                 <div class="mb-3">
+                  <label for="exampleFormControlInput1" class="form-label">Titre de la formation</label>
+                  <input type="text" class="form-control" id="name" name="name" >
+                </div>
+              </div>
+          
+        
+        <div class="mb-3">
+          <label for="exampleFormControlInput1" class="form-label">Nom de l'ecole</label>
+          <input type="text" class="form-control" id="name" name="name" > 
+        </div>
+        <div>
+          <button mat-button matStepperNext>Next</button>
+        </div>
+      
+      </form>
+    </mat-step>
+
+    <mat-step [stepControl]="secondFormGroup">
+      <form [formGroup]="secondFormGroup">
+        <ng-template matStepLabel>Niveau d´expérience global</ng-template>
+        <div class="row">
+          <div class="col">
+            <mat-form-field appearance="fill"  class="full-width">
+              <mat-label>Date de debut </mat-label>
+              <input matInput formControlName="secondCtrl" placeholder="Ex. 31/12/2022"
+                     required>
+            </mat-form-field> </div>
+         
+            <div class="col">
+              <mat-form-field appearance="fill"  class="full-width">
+                <mat-label>Date de fin </mat-label>
+                <input matInput formControlName="secondCtrl" placeholder="Ex. 31/12/2022"
+                       required>
+              </mat-form-field> 
+  
+                  
+                   <div class="col"><mat-checkbox class="example-margin"  class="full-width">à aujourd'hui</mat-checkbox></div>
+                  </div>
+  
+                   <div class="mb-3">
+                    <label for="exampleFormControlInput1" class="form-label">Intitulé du poste</label>
+                    <input type="text" class="form-control" id="name" name="name" >
+                  </div>
+                 
+            
+          
+          <div class="mb-3">
+            <label for="exampleFormControlInput1" class="form-label">Nom de l´entreprise</label>
+            <input type="text" class="form-control" id="name" name="name" > 
+          </div>
+        </div>
+        <div>
+          <button mat-button matStepperPrevious>Back</button>
+          <button mat-button matStepperNext>Next</button>
+        </div>
+      </form>
+    </mat-step>
+    <mat-step [stepControl]="secondFormGroup">
+      <form [formGroup]="secondFormGroup">
+        <ng-template matStepLabel>References</ng-template>
+        <div class="row">
+          <div class="col">
+            <mat-form-field class="full-width">
+              <input matInput placeholder="competence" formControlName="company" name="competence" id="competences" >
+              <textarea matInput></textarea>Vos compétences en quelques mots 
+            </mat-form-field>
+          </div>
+        </div>
+        <mat-form-field appearance="fill">
+          <mat-label>Langues parlées </mat-label>
+          <input matInput formControlName="secondCtrl" placeholder="Ex. francais, anglais"
+                 required>
+        </mat-form-field>
+        <div>
+          <button mat-button matStepperPrevious>Back</button>
+          <button mat-button matStepperNext>Next</button>
+        </div>
+      </form>
+    </mat-step>
+    <mat-step>
+      <ng-template matStepLabel>terminé</ng-template>
+      <p>Vous avez maintenant terminé..</p>
+      <div>
+        <button mat-button matStepperPrevious>Back</button>
+        <button mat-button (click)="stepper.reset()">Reset</button>
+        <button mat-button routerLink="/home">valide</button>
+      </div>
+    </mat-step>
+  </mat-stepper>
+  
+  

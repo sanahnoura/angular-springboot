@@ -1,0 +1,160 @@
+<form [formGroup]="addressForm" >
+  <mat-card class="shipping-card">
+    <mat-card-header>
+      <mat-card-title>Inscrivez vous</mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+     
+      <div class="row">
+        <div class="col">
+          <mat-form-field class="full-width">
+            <input matInput placeholder="First name" formControlName="firstName" name="prenom" id="prenom" [(ngModel)]="user.prenom" [(ngModel)]="dataset.prenom">
+            <mat-error *ngIf="addressForm.controls['firstName'].hasError('required')">
+              Prenom is <strong>required</strong>
+            </mat-error>
+          </mat-form-field>
+        </div>
+        <div class="col">
+          <mat-form-field class="full-width">
+            <input matInput placeholder="Last name" formControlName="lastName" name="nom" id="nom" [(ngModel)]="user.nom" [(ngModel)]="dataset.nom">
+            <mat-error *ngIf="addressForm.controls['lastName'].hasError('required')">
+              Nom is <strong>required</strong>
+            </mat-error>
+          </mat-form-field>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col">
+          <mat-form-field class="full-width">
+            <textarea matInput placeholder="Address" formControlName="address" name="adresse" id="adresse"[(ngModel)]="user.adresse" [(ngModel)]="dataset.adresse"></textarea>
+            <mat-error *ngIf="addressForm.controls['address'].hasError('required')">
+              Address is <strong>required</strong>
+            </mat-error>
+          </mat-form-field>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col">
+          <mat-form-field class="full-width">
+            <input matInput placeholder="Bibliographie" formControlName="company" name="bibliographie" id="bibliographie" [(ngModel)]="user.bibliographie" [(ngModel)]="dataset.bibliographie">
+            <textarea matInput></textarea>Bibliographie <strong>required</strong>
+          </mat-form-field>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col">
+          <mat-form-field class="full-width" name="activite" id="activite" [(ngModel)]="user.activite" [(ngModel)]="dataset.activite" >
+              <mat-label>Activité</mat-label>
+
+              <mat-select>
+                <mat-option value="one">Electriicien</mat-option>
+                <mat-option value="two">Plombier</mat-option>
+                <mat-option value="two">Menuisier</mat-option>
+                <mat-option value="two">Carreleur</mat-option> 
+                <mat-option value="two">Couturier</mat-option>
+                <mat-option value="two">Peintre</mat-option>
+                <mat-option value="two">Menagère</mat-option>
+                <mat-option value="two">Nettoyeur</mat-option>
+                <mat-option value="two">Cuisinier</mat-option>
+                <mat-option value="two">Jardinier</mat-option>
+                <mat-option value="two">Infirmier</mat-option>
+                <mat-option value="two">etc</mat-option>
+                <mat-option value="two">Nettoyeur</mat-option>
+               
+              
+              </mat-select>
+          
+            </mat-form-field>
+          
+        </div>
+      </div>
+
+    
+      <div class="row" *ngIf="hasUnitNumber">
+        <div class="col">
+          <mat-form-field class="full-width">
+            <textarea matInput placeholder="Address 2" formControlName="address2" [(ngModel)]="dataset.adresse" [(ngModel)]="user.adresse"></textarea>
+          </mat-form-field>
+        </div>
+      </div>
+
+  
+      <div class="row">
+        <div class="col">
+          <mat-form-field class="full-width">
+            <mat-label>Enter your email</mat-label>
+              <input matInput placeholder="pat@example.com" [formControl]="email" required name="email" id="email" [(ngModel)]="user.email" [(ngModel)]="dataset.email">
+              <mat-error *ngIf="email.invalid">{{getErrorMessage()}}
+              Email <strong>required</strong>
+            </mat-error>
+           </mat-form-field>
+        </div>
+      
+        <div class="col">
+          <mat-form-field class="full-width">
+            
+            <mat-label>Enter your password</mat-label>
+            <input matInput [type]="hide ? 'password' : 'text'"  [(ngModel)]="user.password" [(ngModel)]="dataset.password">
+       
+            <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+
+              <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+
+            </button>
+          
+          </mat-form-field>
+        </div>
+      </div>
+
+      
+
+      <div class="container" style="margin-top: 20px;">
+        <div class="panel panel-default">
+         <br>
+          <div class="panel-body">        
+            <strong>Sélectionnez des fichiers sur votre ordinateur</strong>
+            <div *ngIf="fileStatus.status==='progress'">
+              <div class="progress">
+                <div [style.width.%]="fileStatus.percent" class="progress-bar progress-bar-animated bg-info" role="progressbar" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100">
+                    {{ fileStatus.requestType }} {{ fileStatus.percent }} 
+                  </div>
+              </div>
+            </div> <hr>
+      
+            <form enctype="multipart/form-data">
+              <fieldset>
+                <div class="form-group">
+                  <div>
+                    <input type="file" name="files" multiple class="form-control" />
+                  </div>
+                </div>
+              </fieldset>
+            </form>
+            
+            <br>  
+            
+            <div  class="js-upload-finished">
+              <h3>Processed files</h3>
+              <div *ngFor="let filename of filenames" class="list-group">
+                <a class="list-group-item list-group-item-success" style="cursor: pointer;">
+                  {{ filename }}            
+                  <a class="alert-success float-right">Télécharger</a>
+                </a><br>
+              </div>
+            </div>
+      
+          </div>
+        </div>
+          </div>
+    
+   
+    
+    </mat-card-content>
+    <mat-card-actions>
+      <button mat-raised-button color="primary" type="submit" (click)="onSubmit()" routerLink="/home">Je m'inscris</button>
+    </mat-card-actions>
+   
+  </mat-card>
+</form>
